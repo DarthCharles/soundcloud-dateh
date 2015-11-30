@@ -4,11 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum= "3.0"
     tools:context=".main.MainActivity">
 
     <fragment
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:name="com.csipro.soundcloud_dateh.main.PlaylistFragment"
+        android:layout_weight= "2.6"
         android:id="@+id/fragment" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:name="com.csipro.soundcloud_dateh.main.PlayerFragment"
+        android:layout_weight= "0.4"
+        android:id="@+id/player" />
+
+
 </LinearLayout>
