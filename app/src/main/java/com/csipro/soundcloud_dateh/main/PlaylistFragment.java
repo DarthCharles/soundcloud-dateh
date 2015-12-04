@@ -1,10 +1,12 @@
 package com.csipro.soundcloud_dateh.main;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,7 +16,6 @@ import com.csipro.soundcloud_dateh.models.Playlist;
 import com.csipro.soundcloud_dateh.models.Track;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -26,6 +27,7 @@ import retrofit.Retrofit;
  * Created by Charles on 29/11/15.
  */
 public class PlaylistFragment extends Fragment {
+    OnTrackSelectedListener mCallback;
 
     public static final String BASE_URL = " http://api.soundcloud.com";
     public static final String CLIENT_ID = "7e2cdc554af905789da2068bca36a1cd";
@@ -33,7 +35,28 @@ public class PlaylistFragment extends Fragment {
     ArrayList<String> Playlist;
     private ArrayAdapter<String> adapter;
 
+    // Container Activity must implement this interface
+    public interface OnTrackSelectedListener {
+        //TODO send an actual track to the PlayTrack method
+        void PlayTrack(String track);
+    }
+
+
     public PlaylistFragment() {
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnTrackSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnTrackSelected");
+        }
     }
 
     @Override
@@ -41,7 +64,6 @@ public class PlaylistFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.playlist_fragment, container, false);
-
         // Find the ListView resource.
         PlaylistListView = (ListView) rootView.findViewById(R.id.listView);
         Playlist = new ArrayList<>();
@@ -72,6 +94,12 @@ public class PlaylistFragment extends Fragment {
                         Playlist);
 
                 PlaylistListView.setAdapter(adapter);
+                PlaylistListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        mCallback.PlayTrack(adapter.getItem(i));
+                    }
+                });
             }
 
             @Override
@@ -83,4 +111,5 @@ public class PlaylistFragment extends Fragment {
 
         return rootView;
     }
+
 }
