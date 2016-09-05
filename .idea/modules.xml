@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Soundcloud-Dateh.iml" filepath="$PROJECT_DIR$/Soundcloud-Dateh.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/soundcloud-dateh.iml" filepath="$PROJECT_DIR$/soundcloud-dateh.iml" />
     </modules>
   </component>
 </project>

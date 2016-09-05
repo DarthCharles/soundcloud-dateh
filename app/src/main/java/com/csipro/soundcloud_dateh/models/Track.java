@@ -5,17 +5,26 @@ package com.csipro.soundcloud_dateh.models;
  */
 public class Track {
     int id;
-    String title, genre, stream_url;
+    String title, genre, artwork_url, stream_url;
 
     public Track(int id, String title, String genre, String stream_url) {
         this.id = id;
         this.title = title;
         this.genre = genre;
+        this.artwork_url = stream_url;
         this.stream_url = stream_url;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getArtwork_url() {
+        return artwork_url;
+    }
+
+    public void setArtwork_url(String artwork_url) {
+        this.artwork_url = artwork_url;
     }
 
     public void setId(int id) {

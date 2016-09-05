@@ -11,6 +11,7 @@ import retrofit.http.Query;
 /**
  * Created by Charles on 29/11/15.
  */
+
 public interface ApiEndpoints {
     @GET("/tracks/{id}")
     Call<Track> getTrack(@Path("id") String id,
